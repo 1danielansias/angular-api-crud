@@ -6,10 +6,10 @@ export interface IResponseList {
   per_page: number;
   total: number;
   total_pages: number;
-  data: IUser[];
+  results: IUser[];
 }
 
 // Interfaz para respuesta GET de usuario individual
 export interface IResponseSingle {
-  data: IUser;
+  results: IUser;
 }
