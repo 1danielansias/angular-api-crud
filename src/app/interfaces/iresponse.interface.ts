@@ -1,15 +1,9 @@
 import { IUser } from './iuser.interface';
 
-// Interfaz para respuesta GET de lista de usuarios páginada
-export interface IResponseList {
+export interface IResponse{
   page: number;
   per_page: number;
   total: number;
   total_pages: number;
   results: IUser[];
-}
-
-// Interfaz para respuesta GET de usuario individual
-export interface IResponseSingle {
-  results: IUser;
 }

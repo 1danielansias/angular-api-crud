@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { IUser } from '../../interfaces/iuser.interface';
 import { UsersService } from '../../services/users.service';
-import { IResponseList } from '../../interfaces/iresponse.interface';
+import { IResponse } from '../../interfaces/iresponse.interface';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 
 @Component({
@@ -16,9 +16,9 @@ export class HomeComponent {
 
   async ngOnInit() {
     this.usersService.getAll().subscribe(
-      (data: IResponseList) => {
+      (data: IResponse) => {
         this.arrUsers = data.results;
-        console.log(this.arrUsers)
+        console.log(this.arrUsers);
       },
       (error) => {
         console.error(error);

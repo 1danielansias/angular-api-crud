@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IResponseList } from '../interfaces/iresponse.interface';
+import { IResponse } from '../interfaces/iresponse.interface';
+import { IUser } from '../interfaces/iuser.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,12 @@ export class UsersService {
 
   // Petición asíncrona con Observable (nativo de Angular)
   // La petición GET se hace a la URL de la API de usuarios, se define el tipo de respuesta que se espera
-  getAll(): Observable<IResponseList> {
-    return this.httpClient.get<IResponseList>(this.baseUrl);
+  getAll(): Observable<IResponse> {
+    return this.httpClient.get<IResponse>(this.baseUrl);
   }
+
+  getUserById(id: string): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${this.baseUrl}/${id}`);
+  }
+
 }
