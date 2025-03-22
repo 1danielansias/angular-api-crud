@@ -1,56 +1,31 @@
-<div class="min-h-screen bg-slate-50">
+<div class="min-h-screen bg-neutral-100 text-white">
   <section class="max-w-screen-xl mx-auto p-8">
+    <!-- <div class="mb-6 text-center">
+      <h1 class="text-white font-bold text-2xl">Lista de usuarios</h1>
+    </div> -->
     <!-- Grid de usuarios -->
-    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-auto-flow-dense place-content-center">
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-content-center mt-5">
       @for (user of arrUsers; track user.id) {
-        <article>
           <app-user-card [user]="user" />
-        </article>
       }
     </div>
     <!-- Botones de paginación -->
-    <div class="flex justify-between mt-15">
+    <div class="flex justify-between mt-10">
       <button
-        type="button"
-        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 cursor-pointer"
+      type="button"
+      (click)="prevPage()"
+      class="text-gray-900 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-400 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 cursor-pointer"
       >
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M13 5H1m0 0L5 1m-4 4l4 4"
-          />
-        </svg>
-        <span class="sr-only">Icon description</span>
+      <lucide-icon [name]="icons.ArrowLeft" size="20"></lucide-icon>
+      <span class="sr-only">Anterior</span>
       </button>
       <button
-        type="button"
-        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 cursor-pointer"
+      type="button"
+      (click)="nextPage()"
+      class="text-gray-900 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-400 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 cursor-pointer"
       >
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-          />
-        </svg>
-        <span class="sr-only">Icon description</span>
+      <lucide-icon [name]="icons.ArrowRight" size="20" ></lucide-icon>
+      <span class="sr-only">Siguiente</span>
       </button>
     </div>
   </section>
