@@ -26,7 +26,7 @@ export class UserViewComponent {
   usersService = inject(UsersService);
   router = inject(Router);
 
-  async ngOnInit() {
+  ngOnInit() {
     // Llamar al método del servicio para obtener un usuario por ID
     this.usersService.getUserById(this.id).subscribe(
       (data: IUser) => {

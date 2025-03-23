@@ -15,11 +15,19 @@ export class UsersService {
   // Petición asíncrona con Observable (nativo de Angular)
   // La petición GET se hace a la URL de la API de usuarios, se define el tipo de respuesta que se espera
   getAll(page: number): Observable<IResponse> {
-    return this.httpClient.get<IResponse>(`${this.baseUrl}?page=${page}`);	
+    return this.httpClient.get<IResponse>(`${this.baseUrl}?page=${page}`);
   }
 
   getUserById(id: string): Observable<IUser> {
     return this.httpClient.get<IUser>(`${this.baseUrl}/${id}`);
+  }
+
+  insert(user: IUser): Observable<IUser> {
+    return this.httpClient.post<IUser>(this.baseUrl, user);
+  }
+
+  update(user: IUser): Observable<IUser> {
+    return this.httpClient.put<IUser>(`${this.baseUrl}/${user._id}`, user);
   }
 
   delete(id: string): Observable<IUser> {

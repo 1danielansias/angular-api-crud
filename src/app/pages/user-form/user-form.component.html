@@ -1,1 +1,59 @@
-<p>user-form works!</p>
+<section class="min-h-screen bg-neutral-100">
+  <div class="max-w-screen-xl mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-4">{{ title }}</h1>
+    <hr class="mb-6" />
+    <form [formGroup]="userForm" (ngSubmit)="getDataForm()">
+      <input type="hidden" formControlName="_id" />
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2" for="first_name"
+          >Nombre</label
+        >
+        <input
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text"
+          id="first_name"
+          formControlName="first_name"
+          placeholder="Introduce tu nombre"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2" for="last_name"
+          >Apellido</label
+        >
+        <input
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text"
+          id="last_name"
+          formControlName="last_name"
+          placeholder="Introduce tu apellido"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2" for="email">Email</label>
+        <input
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Introduce tu email"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2" for="image">Imagen</label>
+        <input
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="url"
+          id="image"
+          formControlName="image"
+          placeholder="Introduce tu foto de perfil"
+        />
+      </div>
+
+      <input
+        type="submit"
+        [value]="userForm.get('_id')?.value ? 'Actualizar' : 'Guardar'"
+        class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 cursor-pointer mt-5"
+      />
+    </form>
+  </div>
+</section>
