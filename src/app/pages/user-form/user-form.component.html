@@ -15,6 +15,9 @@
           formControlName="first_name"
           placeholder="Introduce tu nombre"
         />
+        @if(checkControl('first_name', 'required')){
+        <p class="text-red-500 text-sm mt-1">Campo obligatorio</p>
+        }
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium mb-2" for="last_name"
@@ -27,6 +30,9 @@
           formControlName="last_name"
           placeholder="Introduce tu apellido"
         />
+        @if(checkControl('last_name', 'required')){
+        <p class="text-red-500 text-sm mt-1">Campo obligatorio</p>
+        }
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium mb-2" for="email">Email</label>
@@ -37,6 +43,11 @@
           formControlName="email"
           placeholder="Introduce tu email"
         />
+        @if(checkControl('email', 'required')){
+        <p class="text-red-500 text-sm mt-1">Campo obligatorio</p>
+        } @if(checkControl('email', 'pattern')){
+        <p class="text-red-500 text-sm mt-1">El email tiene que ser correcto</p>
+        }
       </div>
       <div class="mb-4">
         <label class="block text-sm font-medium mb-2" for="image">Imagen</label>
@@ -47,8 +58,10 @@
           formControlName="image"
           placeholder="Introduce tu foto de perfil"
         />
+        @if(checkControl('image', 'required')){
+        <p class="text-red-500 text-sm mt-1">Campo obligatorio</p>
+        }
       </div>
-
       <input
         type="submit"
         [value]="userForm.get('_id')?.value ? 'Actualizar' : 'Guardar'"

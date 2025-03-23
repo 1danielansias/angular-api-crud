@@ -18,33 +18,31 @@ export class HomeComponent {
   totalPages: number = 0;
   page: number = 1;
 
-  loadUsers() {
-    this.usersService.getAll(this.page).subscribe(
-      (data: IResponse) => {
-        this.arrUsers = data.results;
-        this.totalPages = data.total_pages;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  prevPage() {
-    if (this.page > 1) {
-      this.page--;
-      this.loadUsers();
-    }
-  }
-
-  nextPage() {
-    if (this.page < this.totalPages) {
-      this.page++;
-      this.loadUsers();
-    }
-  }
-
   ngOnInit() {
     this.loadUsers();
+  }
+
+  async loadUsers() {
+    try {
+      const {results, total_pages} = await this.usersService.getAll(this.page);
+      this.arrUsers = results;
+      this.totalPages = total_pages;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
+  async prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      await this.loadUsers();
+    }
+  }
+
+  async nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      await this.loadUsers();
+    }
   }
 }

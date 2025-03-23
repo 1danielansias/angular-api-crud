@@ -17,7 +17,6 @@ export class UserCardComponent {
   usersService = inject(UsersService);
 
   deleteUser(id: string) {
-    console.log('Borrar usuario: ' + id);
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Esta acción no se puede deshacer.',
@@ -27,26 +26,27 @@ export class UserCardComponent {
       cancelButtonColor: '#262626',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         // Llamar al método del servicio para eliminar un usuario por ID
-        this.usersService.delete(id).subscribe((data) => {
-          if (data._id) {
-            Swal.fire({
-              title: 'Eliminado',
-              text: 'El usuario ha sido eliminado.',
-              icon: 'success',
-              confirmButtonColor: '#3085d6',
-            });
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'No se pudo eliminar el usuario.',
-              icon: 'error',
-              confirmButtonColor: '#262626',
-            });
-          }
-        });
+        let response = await this.usersService.delete(id);
+        // Si la respuesta devuelve un usuario con su id correspondiente, la eliminación fue exitosa
+        if (response._id) {
+          Swal.fire({
+            title: 'Eliminado',
+            text: 'El usuario ha sido eliminado.',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+          });
+          // En caso contrario, hubo un error
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'No se pudo eliminar el usuario.',
+            icon: 'error',
+            confirmButtonColor: '#262626',
+          });
+        }
       }
     });
   }

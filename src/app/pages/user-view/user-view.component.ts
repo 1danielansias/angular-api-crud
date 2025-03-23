@@ -22,20 +22,33 @@ export class UserViewComponent {
   icons = { Eye, Pencil, Trash2, ArrowLeft };
 
   @Input() id: string = ''; // Recibir el ID del usuario a visualizar (input binding)
-  user!: IUser;
+  user: IUser = {
+    _id: '',
+    id: 0,
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    image: '',
+    password: '',
+  }; // Datos del usuario
   usersService = inject(UsersService);
   router = inject(Router);
 
-  ngOnInit() {
+  async ngOnInit() {
     // Llamar al método del servicio para obtener un usuario por ID
-    this.usersService.getUserById(this.id).subscribe(
-      (data: IUser) => {
-        this.user = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    let response: IUser = await this.usersService.getUserById(this.id);
+    if ('error' in response) {
+      Swal.fire({
+        title: 'Error',
+        text: 'El usuario no existe',
+        icon: 'error',
+        confirmButtonColor: '#262626',
+      });
+      this.router.navigate(['/home']);
+    } else {
+      this.user = response;
+    }
   }
 
   deleteUser() {
@@ -48,27 +61,25 @@ export class UserViewComponent {
       cancelButtonColor: '#262626',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         // Llamar al método del servicio para eliminar un usuario por ID
-        this.usersService.delete(this.id).subscribe((data) => {
-          if (data._id) {
-            Swal.fire({
-              title: 'Eliminado',
-              text: 'El usuario ha sido eliminado.',
-              icon: 'success',
-              confirmButtonColor: '#3085d6',
-            });
-          } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'No se pudo eliminar el usuario.',
-              icon: 'error',
-              confirmButtonColor: '#262626',
-            });
-          }
-        });
-
+        let response: IUser = await this.usersService.delete(this.id);
+        if ('error' in response) {
+          Swal.fire({
+            title: 'Error',
+            text: 'No se pudo eliminar al usuario',
+            icon: 'error',
+            confirmButtonColor: '#262626',
+          });
+        } else {
+          Swal.fire({
+            title: 'Usuario eliminado',
+            text: 'El usuario ha sido eliminado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+          });
+        }
         this.router.navigate(['/home']);
       }
     });
