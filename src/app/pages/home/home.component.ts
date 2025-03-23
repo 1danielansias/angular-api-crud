@@ -24,9 +24,9 @@ export class HomeComponent {
 
   async loadUsers() {
     try {
-      const {results, total_pages} = await this.usersService.getAll(this.page);
-      this.arrUsers = results;
-      this.totalPages = total_pages;
+      let response: IResponse = await this.usersService.getAll(this.page);
+      this.arrUsers = response.results;
+      this.totalPages = response.total_pages;
     } catch(error) {
       console.error(error);
     }

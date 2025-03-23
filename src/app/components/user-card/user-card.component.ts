@@ -30,6 +30,7 @@ export class UserCardComponent {
       if (result.isConfirmed) {
         // Llamar al método del servicio para eliminar un usuario por ID
         let response = await this.usersService.delete(id);
+        console.log(response);
         // Si la respuesta devuelve un usuario con su id correspondiente, la eliminación fue exitosa
         if (response._id) {
           Swal.fire({

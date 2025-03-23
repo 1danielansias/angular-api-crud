@@ -65,19 +65,20 @@ export class UserViewComponent {
       if (result.isConfirmed) {
         // Llamar al método del servicio para eliminar un usuario por ID
         let response: IUser = await this.usersService.delete(this.id);
-        if ('error' in response) {
-          Swal.fire({
-            title: 'Error',
-            text: 'No se pudo eliminar al usuario',
-            icon: 'error',
-            confirmButtonColor: '#262626',
-          });
-        } else {
+        console.log(response);
+        if (response._id) {
           Swal.fire({
             title: 'Usuario eliminado',
             text: 'El usuario ha sido eliminado correctamente',
             icon: 'success',
             confirmButtonColor: '#3085d6',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'No se pudo eliminar al usuario',
+            icon: 'error',
+            confirmButtonColor: '#262626',
           });
         }
         this.router.navigate(['/home']);

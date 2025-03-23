@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { IResponse } from '../interfaces/iresponse.interface';
 import { IUser } from '../interfaces/iuser.interface';
 

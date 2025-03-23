@@ -7,7 +7,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -50,6 +49,7 @@ export class UserFormComponent {
             icon: 'error',
             confirmButtonColor: '#3085d6',
           });
+          this.router.navigate(['/home']);
         }
       } catch (error) {
         console.log(error);
@@ -62,7 +62,7 @@ export class UserFormComponent {
         _id: new FormControl(this.id, []),
         first_name: new FormControl(this.user?.first_name, [Validators.required]),
         last_name: new FormControl(this.user?.last_name, [Validators.required]),
-        email: new FormControl(this.user?.email, [Validators.required, Validators.pattern(/^\w+\@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]),
+        email: new FormControl(this.user?.email, [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
         image: new FormControl(this.user?.image, [Validators.required]),
       },
       []

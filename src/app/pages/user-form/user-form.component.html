@@ -66,6 +66,7 @@
         type="submit"
         [value]="userForm.get('_id')?.value ? 'Actualizar' : 'Guardar'"
         class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 cursor-pointer mt-5"
+        [disabled]="userForm.invalid"
       />
     </form>
   </div>
