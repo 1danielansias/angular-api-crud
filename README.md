@@ -50,7 +50,7 @@ La aplicación sigue un **sistema de componentes y rutas funcional**, con separa
 ### Clonar y ejecutar
 ```bash
 git clone https://github.com/tu-usuario/angular-api-crud.git
-cd angular-user-manager
+cd angular-api-crud
 npm install
 ng serve -o
 
