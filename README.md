@@ -1,59 +1,56 @@
-# Angular API User CRUD
+# 🌐 Angular User Manager
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+**Angular User Manager** es una aplicación web desarrollada con **Angular**, diseñada para implementar un **CRUD completo** (Create, Read, Update, Delete) consumiendo una **API REST externa**.  
 
-## Development server
+La aplicación sigue un **sistema de componentes y rutas funcional**, con separación lógica de vistas, servicios e interfaces, aplicando buenas prácticas de desarrollo frontend moderno.
 
-To start a local development server, run:
+---
 
+## ✨ Características principales
+
+- **Listado dinámico de usuarios**: vista en **grid** mostrando foto, nombre y acciones rápidas.
+- **Detalle de usuario**: vista individual con todos los datos proporcionados por la API.
+- **Formulario reutilizable** para **crear** y **actualizar** usuarios, con validaciones reactivas (email válido, campos obligatorios, etc.).
+- **CRUD completo contra API externa**: integración con `https://peticiones.online/users`.
+- **Eliminación con confirmación** mediante alertas (SweetAlert).
+- **Sistema de rutas en Angular** (`/home`, `/user/:id`, `/newuser`, `/updateuser/:id`).
+- **Comunicación entre componentes** a través de servicios e inputs/outputs.
+
+---
+
+## 🧱 Arquitectura y diseño
+
+- **Angular Components & Routing**:  
+  - `HomeComponent`: listado de usuarios en formato grid.  
+  - `UserDetailComponent`: vista de detalle de usuario.  
+  - `UserFormComponent`: formulario reutilizado para altas y actualizaciones.  
+- **Servicios Angular**: `UserService` encargado de gestionar las peticiones HTTP y centralizar la lógica de negocio.  
+- **Interfaces TypeScript** para tipado seguro de entidades (`User`, `ApiResponse`).  
+- **Formularios con validaciones reactivas** (`ReactiveFormsModule`).  
+- **Tailwind CSS** integrado para maquetación y estilos.  
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- **[Angular](https://angular.io/)** (v16+): framework principal de desarrollo.  
+- **[TypeScript](https://www.typescriptlang.org/)**: tipado estático y robustez en el desarrollo.  
+- **[TailwindCSS](https://tailwindcss.com/)**: estilos y componentes UI.  
+- **[SweetAlert2](https://sweetalert2.github.io/)**: modales y confirmaciones de borrado.  
+- **[Git](https://git-scm.com/)**: control de versiones y seguimiento del desarrollo.  
+
+---
+
+## 🚀 Puesta en marcha
+
+### Requisitos
+- Node.js 18+
+- Angular CLI
+
+### Clonar y ejecutar
 ```bash
-ng serve
-```
+git clone https://github.com/tu-usuario/angular-user-manager.git
+cd angular-user-manager
+npm install
+ng serve -o
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
