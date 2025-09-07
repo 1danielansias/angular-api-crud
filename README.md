@@ -49,7 +49,7 @@ La aplicación sigue un **sistema de componentes y rutas funcional**, con separa
 
 ### Clonar y ejecutar
 ```bash
-git clone https://github.com/tu-usuario/angular-user-manager.git
+git clone https://github.com/tu-usuario/angular-api-crud.git
 cd angular-user-manager
 npm install
 ng serve -o
